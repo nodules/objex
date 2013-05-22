@@ -1,0 +1,35 @@
+{
+  "name": "objex",
+  "version": "0.2.4",
+  "description": "Easy prototype and static methods inheritance via inheritedBy method",
+  "main": "./lib/objex.js",
+  "scripts": {
+    "test": "./node_modules/.bin/nodeunit ./test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nodules/objex.git"
+  },
+  "keywords": [
+    "prototype",
+    "object",
+    "inheritance"
+  ],
+  "author": {
+    "name": "Phillip Kovalev",
+    "email": "twilightfeel@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Alexey Rybakov",
+      "email": "alexrybakov@yandex.ru"
+    }
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "nodeunit": "0.8.x"
+  },
+  "dependencies": {
+    "extend": "1.1.3"
+  }
+}

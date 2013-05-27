@@ -4,7 +4,7 @@
   "description": "Easy prototype and static methods inheritance via inheritedBy method",
   "main": "./lib/objex.js",
   "scripts": {
-    "test": "./node_modules/.bin/nodeunit ./test"
+    "test": "./node_modules/.bin/jshint --config ./.jshintrc ./lib && ./node_modules/.bin/nodeunit ./test"
   },
   "repository": {
     "type": "git",
@@ -15,19 +15,22 @@
     "object",
     "inheritance"
   ],
-  "author": {
-    "name": "Phillip Kovalev",
-    "email": "twilightfeel@gmail.com"
-  },
+  "author": "Phillip Kovalev <twilightfeel@gmail.com> (https://github.com/kaero)",
+  "maintainers": [
+    "Phillip Kovalev <twilightfeel@gmail.com> (https://github.com/kaero)"
+  ],
   "contributors": [
+    "Alexey Rybakov <alexrybakov@yandex.ru> (https://github.com/flackus)"
+  ],
+  "licenses": [
     {
-      "name": "Alexey Rybakov",
-      "email": "alexrybakov@yandex.ru"
+      "type": "MIT",
+      "url": "https://raw.github.com/nodules/objex/master/LICENSE"
     }
   ],
-  "license": "MIT",
   "devDependencies": {
-    "nodeunit": "0.8.x"
+    "nodeunit": "0.8.x",
+    "jshint": "2.1.x"
   },
   "dependencies": {
     "extend": "1.1.3"

@@ -1,4 +1,4 @@
-# objex
+# objex [![Build Status](https://secure.travis-ci.org/nodules/objex.png)](http://travis-ci.org/nodules/objex)
 
 Base constructor to ease prototype inheritance.
 

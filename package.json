@@ -4,7 +4,7 @@
   "description": "Easy prototype and static methods inheritance via inheritedBy method",
   "main": "./lib/objex.js",
   "scripts": {
-    "test": "./node_modules/.bin/jshint --config ./.jshintrc ./lib && ./node_modules/.bin/nodeunit ./test"
+    "test": "./node_modules/.bin/jshint --config ./.jshintrc ./lib ./node_modules/.bin/jscs ./lib ./test && ./node_modules/.bin/nodeunit ./test"
   },
   "repository": {
     "type": "git",
@@ -30,7 +30,8 @@
   ],
   "devDependencies": {
     "nodeunit": "0.8.x",
-    "jshint": "2.1.x"
+    "jshint": "2.1.x",
+    "jscs": ">=1.0.5"
   },
   "dependencies": {
     "extend": "1.1.3"

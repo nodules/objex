@@ -181,5 +181,18 @@ module.exports = {
         test.ok(Object.prototype.isPrototypeOf(err), 'check prototype chain #5');
 
         test.done();
+    },
+
+    extendStaticProps : function(test) {
+        var Wolf = Objex.create(),
+            Dog;
+
+        Wolf.area = null;
+        Dog = Wolf.create();
+
+        test.strictEqual(Dog.area, null,
+            'static property with value `null` must be copied as `null`');
+
+        test.done();
     }
 };

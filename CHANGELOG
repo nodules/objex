@@ -1,0 +1,6 @@
+objex (0.2.6); urgency=low
+
+ * add support for dynamic mixing (see "Dynamic mixing" section in the README for details).
+
+ -- Phillip Kovalev <twilightfeel@gmail.com>  Mon, 25 Nov 2013 19:24:02 +0400
+

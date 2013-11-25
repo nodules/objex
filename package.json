@@ -1,6 +1,6 @@
 {
   "name": "objex",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Easy prototype and static methods inheritance via inheritedBy method",
   "main": "./lib/objex.js",
   "scripts": {

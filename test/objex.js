@@ -194,5 +194,48 @@ module.exports = {
             'static property with value `null` must be copied as `null`');
 
         test.done();
+    },
+
+    __objexOnMixing : function(test) {
+        var Human = Objex.create(),
+            Dog = Objex.create(),
+            Mutant = function() {},
+            actions = 0,
+            population = 10;
+
+        Human.prototype.doSomething = Dog.prototype.doSomething = function() {
+            return ++actions;
+        };
+
+        Mutant.__objexOnMixing = function(Base, hungry) {
+            var doSomething = Base.prototype.doSomething;
+
+            if (hungry === true) {
+                Base.prototype.doSomething = function() {
+                    // eat anybody
+                    --population;
+
+                    return doSomething();
+                };
+            }
+        };
+
+        Human.mixin(Mutant, true);
+        Dog.mixin(Mutant);
+
+        var dog = new Dog(),
+            human = new Human();
+
+        dog.doSomething();
+
+        test.strictEqual(actions, 1, 'original method has been executed');
+        test.strictEqual(population, 10, 'original method was not wrapped on dynamic mixing');
+
+        human.doSomething();
+
+        test.strictEqual(actions, 2, 'original method has been executed #2');
+        test.strictEqual(population, 9, 'original methods was wrapped duering dynamic mixing');
+
+        test.done();
     }
 };

@@ -144,6 +144,48 @@ Dog.mixin({ override : true }, LoudVoice);
 jimmy.jumpBackward();
 ```
 
+#### Dynamic mixing
+
+You can declare special static method `__objexOnMixing` in the mixin, which will be called while mixin applies:
+
+```javascript
+var Human = Objex.create(function() {
+        Human.__super.apply(this, arguments);
+        Human.population++;
+    }),
+    Mutant = function() {}; // mixin
+
+Human.population = 1000;
+
+Human.prototype.doSomething = function() {
+    console.log('Doing something...');
+};
+
+Mutant.__objexOnMixing = function(Base, isHungry) {
+    var doSomething = Base.prototype.doSomething;
+
+    if (isHungry && typeof doSomething === 'function') {
+        // extend Base method if Mutant is hungry
+        Base.prototype.doSomething = function() {
+            // eat anybody before doing something
+            Base.population--;
+            return doSomething.apply(this, arguments);
+        }
+    }
+};
+
+// people became hungry mutants
+Human.mixin(Mutant, true);
+
+var human = new Human();
+
+console.log(Human.population); // -> 1001
+
+human.doSomething(); // -> 'Doing something...'
+
+console.log(Human.population); // -> 1000
+```
+
 ## API
 
 Description of the Objex and its successors static methods.

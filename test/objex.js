@@ -150,6 +150,11 @@ module.exports = {
             Werewolf.mixin(NoPrototypeCtor);
         }, TypeError, 'mixin contructor or object without prototype');
 
+        Werewolf.mixin(Human);
+
+        test.notStrictEqual(Werewolf.obj, wwObj, 'static property has been overriden #1');
+        test.deepEqual(Werewolf.obj, humanObj, 'static property has been overriden #2');
+
         test.done();
     },
 

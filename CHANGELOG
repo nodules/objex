@@ -1,3 +1,9 @@
+objex (0.2.7); urgency=low
+
+ * Objex.mixin now does not override target `prototype.constructor` property with mixin value.
+
+ -- Phillip Kovalev <twilightfeel@gmail.com>  Mon, 13 Jan 2014 19:50:33 +0400
+
 objex (0.2.6); urgency=low
 
  * add support for dynamic mixing (see "Dynamic mixing" section in the README for details).

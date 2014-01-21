@@ -1,3 +1,11 @@
+objex (0.3.0); urgency=low
+
+ * Objex.__objexPrepareInheritor is removed;
+ * fix determination of dynamic mixing (now dynamic mixing works for
+   Objex.mixin calls with options hash passd before mixin).
+
+ -- Phillip Kovalev <twilightfeel@gmail.com>  Tue, 21 Jan 2014 19:23:33 +0400
+
 objex (0.2.7); urgency=low
 
  * Objex.mixin now does not override target `prototype.constructor` property with mixin value.

@@ -1,6 +1,6 @@
 {
   "name": "objex",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Easy prototype and static methods inheritance via inheritedBy method",
   "main": "./lib/objex.js",
   "scripts": {
@@ -20,7 +20,8 @@
     "Phillip Kovalev <twilightfeel@gmail.com> (https://github.com/kaero)"
   ],
   "contributors": [
-    "Alexey Rybakov <alexrybakov@yandex.ru> (https://github.com/flackus)"
+    "Alexey Rybakov <alexrybakov@yandex.ru> (https://github.com/flackus)",
+    "Sofya Ilinova <tavsophi@gmail.com> (https://github.com/isquariel)"
   ],
   "licenses": [
     {

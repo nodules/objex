@@ -1,3 +1,9 @@
+objex (0.3.1); urgency=low
+
+ * add methods Objex.isParentOf and Objex.isInheritorOf
+
+ -- Phillip Kovalev <twilightfeel@gmail.com>  Thu, 15 May 2014 16:24:39 +0400
+
 objex (0.3.0); urgency=low
 
  * Objex.__objexPrepareInheritor is removed;

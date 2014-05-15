@@ -52,7 +52,7 @@ var Animal = Objex.create(function() {
     }),
     Sheep,
     Wolf;
-    
+
 Animal.count = 0;
 
 Animal.kill = function() {
@@ -60,7 +60,7 @@ Animal.kill = function() {
         Animal.count--;
     }
 };
-    
+
 // pass `false` as first argument to prevent static fields bypass,
 // static method `create` will be copied anyway.
 // Assume, you want to count sheeps separately.
@@ -72,7 +72,7 @@ Sheep = Animal.create(false, function() {
 
 Sheep.count = 0;
 
-// pass array of property names as first argument 
+// pass array of property names as first argument
 // to copy certain static properties only.
 // Static property `count` is useless for Wolf,
 // but you are still able to kill it, and decrease global Animal.count!
@@ -93,7 +93,7 @@ var MyOwnErrorEx;
 
 function ErrorEx() {
     ErrorEx.__super.apply(this, arguments);
-    
+
     this.extended = true;
 }
 
@@ -207,4 +207,6 @@ Add Objex `create` and `mixin` static methods to the `ctor` which is not Objex s
 
 Mixin (copy) static and prototype methods of `ctor` to the callee contructor and its prototype if they doesn't exists.
 
-Argument `options` is mostly the same as of the `create` method, but the object argument can contain additional boolean property `override`. If it equals `true` existing methods of the callee will be overriden by mixin's methods.
+Argument `options` is mostly the same as of the `create` method, but the object argument can contain additional properties:
+ * `{Boolean} [override=false]` — if it equals `true` existing methods of the callee will be overriden by mixin's methods,
+ * `{Boolean} [skipDynamicMixing=false]` — if it equals `true` __objexOnMixing won’t be called.

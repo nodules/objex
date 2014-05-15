@@ -205,6 +205,59 @@ module.exports = {
         test.done();
     },
 
+    isParentOf : function(test) {
+        var Animal = Objex.create(function Animal() {
+                Animal.__super.apply(this, arguments);
+                this.animal = true;
+            }),
+            Wolf = Animal.create(function Wolf() {
+                Wolf.__super.apply(this, arguments);
+                this.wolf = true;
+            }),
+            Dog = Wolf.create(function Dog() {
+                Dog.__super.apply(this, arguments);
+                this.dog = true;
+            }),
+            Cat = Animal.create(function Cat() {
+                Cat.__super.apply(this, arguments);
+                this.cat = true;
+            });
+
+        test.ok(Animal.isParentOf(Wolf), 'isParentOf test #1');
+        test.ok(Animal.isParentOf(Dog), 'isParentOf test #2');
+        test.ok(Wolf.isParentOf(Dog), 'isParentOf test #3');
+        test.strictEqual(Wolf.isParentOf(Cat), false, 'isParentOf test #4');
+        test.strictEqual(Animal.isParentOf({}), false, 'isParentOf test #5');
+
+        test.done();
+    },
+
+    isInheritorOf : function(test) {
+        var Animal = Objex.create(function Animal() {
+                Animal.__super.apply(this, arguments);
+                this.animal = true;
+            }),
+            Wolf = Animal.create(function Wolf() {
+                Wolf.__super.apply(this, arguments);
+                this.wolf = true;
+            }),
+            Dog = Wolf.create(function Dog() {
+                Dog.__super.apply(this, arguments);
+                this.dog = true;
+            }),
+            Cat = Animal.create(function Cat() {
+                Cat.__super.apply(this, arguments);
+                this.cat = true;
+            });
+
+        test.ok(Wolf.isInheritorOf(Animal), 'isInheritorOf test #1');
+        test.ok(Dog.isInheritorOf(Animal), 'isInheritorOf test #2');
+        test.ok(Dog.isInheritorOf(Wolf), 'isInheritorOf test #3');
+        test.strictEqual(Cat.isInheritorOf(Wolf), false, 'isInheritor test #4');
+
+        test.done();
+    },
+
     __objexOnMixing : function(test) {
         var Human = Objex.create(),
             Dog = Objex.create(),

@@ -261,16 +261,20 @@ module.exports = {
     __objexOnMixing : function(test) {
         var Human = Objex.create(),
             Dog = Objex.create(),
+            Cat = Objex.create(),
             Mutant = function() {},
             actions = 0,
-            population = 10;
+            population = 10,
+            ObjexOnMixingCallNumber = 0;
 
-        Human.prototype.doSomething = Dog.prototype.doSomething = function() {
+        Human.prototype.doSomething = Dog.prototype.doSomething = Cat.prototype.doSomething = function() {
             return ++actions;
         };
 
         Mutant.__objexOnMixing = function(Base, hungry) {
             var doSomething = Base.prototype.doSomething;
+
+            ObjexOnMixingCallNumber++;
 
             if (hungry === true) {
                 Base.prototype.doSomething = function() {
@@ -284,19 +288,28 @@ module.exports = {
 
         Human.mixin(Mutant, true);
         Dog.mixin(Mutant);
+        Cat.mixin({ skipDynamicMixing: true }, Mutant, true);
+
+        test.strictEqual(ObjexOnMixingCallNumber, 2);
 
         var dog = new Dog(),
-            human = new Human();
+            human = new Human(),
+            cat = new Cat();
 
         dog.doSomething();
 
-        test.strictEqual(actions, 1, 'original method has been executed');
-        test.strictEqual(population, 10, 'original method was not wrapped on dynamic mixing');
+        test.strictEqual(actions, 1, 'original method has been executed #1');
+        test.strictEqual(population, 10, 'original method was not wrapped on dynamic mixing #1');
 
         human.doSomething();
 
         test.strictEqual(actions, 2, 'original method has been executed #2');
-        test.strictEqual(population, 9, 'original methods was wrapped duering dynamic mixing');
+        test.strictEqual(population, 9, 'original methods was wrapped duering dynamic mixing #2');
+
+        cat.doSomething();
+
+        test.strictEqual(actions, 3, 'original method has been executed #3');
+        test.strictEqual(population, 9, 'original methods wrapping was skipped duering dynamic mixing #3');
 
         test.done();
     }

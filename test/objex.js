@@ -1,8 +1,9 @@
 var Objex = require('../lib/objex'),
+    test = require('chai').assert,
     util = require('util');
 
 module.exports = {
-    create : function create(test) {
+    create : function create() {
         var Animal = Objex.create(function Animal() {
                 Animal.__super.apply(this, arguments);
                 this.animal = true;
@@ -28,7 +29,7 @@ module.exports = {
 
         test.throws(function() {
             bird = new Bird();
-        }, TypeError, 'call constructor with __super call before Objex.create');
+        }, TypeError, /'apply' of undefined$/);
 
         Bird = Animal.create(Bird);
         bird = new Bird();
@@ -83,11 +84,9 @@ module.exports = {
         test.ok(Animal.prototype.isPrototypeOf(eagle), 'prototype chain check #8');
         test.ok(Bird.prototype.isPrototypeOf(eagle), 'prototype chain check #9');
         test.ok(Eagle.prototype.isPrototypeOf(eagle), 'prototype chain check #10');
-
-        test.done();
     },
 
-    mixin : function mixin(test) {
+    mixin : function mixin() {
         var Wolf = Objex.create(),
             Werewolf = Wolf.create(),
             Human = Objex.create(),
@@ -96,7 +95,7 @@ module.exports = {
             wwPopulation = 10000,
             humanPopulation = 6000000000,
             humanObj = { x : 1 },
-            humanArr = [ 1, 2 , humanObj ],
+            humanArr = [ 1, 2, humanObj ],
             wwObj = { x : 2, y : 2 },
             wwArr = [ 2, 3, wwObj ],
             cowsGetter = function() {
@@ -120,7 +119,7 @@ module.exports = {
         Werewolf.obj = wwObj;
         Werewolf._arr = wwArr;
         Werewolf.prototype._obj = wwObj;
-        Werewolf.prototype.arr= wwArr;
+        Werewolf.prototype.arr = wwArr;
 
         Werewolf.mixin(Human);
 
@@ -152,17 +151,15 @@ module.exports = {
         }, TypeError, 'mixin contructor or object without prototype');
 
         originalWerewolfCtor = Werewolf.prototype.constructor;
-        Werewolf.mixin({ override: true }, Human);
+        Werewolf.mixin({ override : true }, Human);
 
         test.notStrictEqual(Werewolf.obj, wwObj, 'static property has been overriden #1');
         test.deepEqual(Werewolf.obj, humanObj, 'static property has been overriden #2');
 
         test.strictEqual(Werewolf.prototype.constructor, originalWerewolfCtor, 'mixin does not affect prototype.constructor');
-
-        test.done();
     },
 
-    wrap : function wrap(test) {
+    wrap : function wrap() {
         var ErrorInheritor = function() {
                 ErrorInheritor.__super.apply(this, arguments);
             },
@@ -188,11 +185,9 @@ module.exports = {
         test.ok(ErrorInheritor.prototype.isPrototypeOf(err), 'check prototype chain #3');
         test.ok(Error.prototype.isPrototypeOf(err), 'check prototype chain #4');
         test.ok(Object.prototype.isPrototypeOf(err), 'check prototype chain #5');
-
-        test.done();
     },
 
-    extendStaticProps : function(test) {
+    extendStaticProps : function() {
         var Wolf = Objex.create(),
             Dog;
 
@@ -201,11 +196,9 @@ module.exports = {
 
         test.strictEqual(Dog.area, null,
             'static property with value `null` must be copied as `null`');
-
-        test.done();
     },
 
-    isParentOf : function(test) {
+    isParentOf : function() {
         var Animal = Objex.create(function Animal() {
                 Animal.__super.apply(this, arguments);
                 this.animal = true;
@@ -228,11 +221,9 @@ module.exports = {
         test.ok(Wolf.isParentOf(Dog), 'isParentOf test #3');
         test.strictEqual(Wolf.isParentOf(Cat), false, 'isParentOf test #4');
         test.strictEqual(Animal.isParentOf({}), false, 'isParentOf test #5');
-
-        test.done();
     },
 
-    isInheritorOf : function(test) {
+    isInheritorOf : function() {
         var Animal = Objex.create(function Animal() {
                 Animal.__super.apply(this, arguments);
                 this.animal = true;
@@ -254,11 +245,9 @@ module.exports = {
         test.ok(Dog.isInheritorOf(Animal), 'isInheritorOf test #2');
         test.ok(Dog.isInheritorOf(Wolf), 'isInheritorOf test #3');
         test.strictEqual(Cat.isInheritorOf(Wolf), false, 'isInheritor test #4');
-
-        test.done();
     },
 
-    __objexOnMixing : function(test) {
+    __objexOnMixing : function() {
         var Human = Objex.create(),
             Dog = Objex.create(),
             Cat = Objex.create(),
@@ -288,7 +277,7 @@ module.exports = {
 
         Human.mixin(Mutant, true);
         Dog.mixin(Mutant);
-        Cat.mixin({ skipDynamicMixing: true }, Mutant, true);
+        Cat.mixin({ skipDynamicMixing : true }, Mutant, true);
 
         test.strictEqual(ObjexOnMixingCallNumber, 2);
 
@@ -310,7 +299,5 @@ module.exports = {
 
         test.strictEqual(actions, 3, 'original method has been executed #3');
         test.strictEqual(population, 9, 'original methods wrapping was skipped duering dynamic mixing #3');
-
-        test.done();
     }
 };

@@ -1,4 +1,8 @@
-# objex [![Build Status](https://secure.travis-ci.org/nodules/objex.png)](http://travis-ci.org/nodules/objex)
+Objex [![NPM version][npm-image]][npm-link] [![Build Status][build-image]][build-link]
+=====
+
+[![Dependency status][deps-image]][deps-link]
+[![Development Dependency status][devdeps-image]][devdeps-link]
 
 Base constructor to ease prototype inheritance.
 
@@ -210,3 +214,12 @@ Mixin (copy) static and prototype methods of `ctor` to the callee contructor and
 Argument `options` is mostly the same as of the `create` method, but the object argument can contain additional properties:
  * `{Boolean} [override=false]` — if it equals `true` existing methods of the callee will be overriden by mixin's methods,
  * `{Boolean} [skipDynamicMixing=false]` — if it equals `true` __objexOnMixing won’t be called.
+
+[npm-image]: https://img.shields.io/npm/v/objex.svg?style=flat
+[npm-link]: https://npmjs.org/package/objex
+[build-image]: https://img.shields.io/travis/nodules/objex.svg?style=flat
+[build-link]: https://travis-ci.org/nodules/objex
+[deps-image]: https://img.shields.io/david/nodules/objex.svg?style=flat
+[deps-link]: https://david-dm.org/nodules/objex
+[devdeps-image]: https://img.shields.io/david/dev/nodules/objex.svg?style=flat
+[devdeps-link]: https://david-dm.org/nodules/objex#info=devDependencies
